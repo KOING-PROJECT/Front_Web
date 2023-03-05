@@ -18,8 +18,8 @@ class _LeftSideState extends State<LeftSide> {
         borderRadius: BorderRadius.only(
             topRight: Radius.circular(50), bottomRight: Radius.circular(50)),
       ),
-      child: Flex(
-        direction: Axis.vertical,
+      child: ListView(
+       // direction: Axis.vertical,
         children: [
           const SizedBox(height: 80),
           Column(
@@ -182,7 +182,8 @@ class _LeftSideState extends State<LeftSide> {
                   ),
                 ),
               ),
-              const SizedBox(height: 500),
+              SizedBox(height: 300,),
+
               InkWell(
                 onTap: (){
                   _selectedIndex=4;
