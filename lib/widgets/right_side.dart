@@ -9,20 +9,16 @@ class RightSide extends StatefulWidget {
   const RightSide({super.key});
 
   @override
-  State<RightSide> createState() => RrightSideState();
+  State<RightSide> createState() => RightSideState();
 }
 
-class RrightSideState extends State<RightSide> {
+class RightSideState extends State<RightSide> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
       flex: 7,
       child: Container(
-        margin: const EdgeInsets.only(top: 10, right: 10, bottom: 10),
-        decoration: const BoxDecoration(
-          color: Color(0xFFE1E2E2),
-          borderRadius: BorderRadius.all(Radius.circular(35)),
-        ),
+
         child: Column(
           children: [
             appBar(),

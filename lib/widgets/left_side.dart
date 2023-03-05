@@ -1,6 +1,4 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import '../global.dart';
 
 class LeftSide extends StatefulWidget {
   const LeftSide({super.key});
@@ -10,162 +8,235 @@ class LeftSide extends StatefulWidget {
 }
 
 class _LeftSideState extends State<LeftSide> {
+   int _selectedIndex=0;
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 200,
-      color: Colors.white,
-      child: Column(
+      width: 270,
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+            topRight: Radius.circular(50), bottomRight: Radius.circular(50)),
+      ),
+      child: Flex(
+        direction: Axis.vertical,
         children: [
           const SizedBox(height: 80),
           Column(
             children: [
-              Image.asset("assets/icons/KOING Logo_GRD.png",width: 70,),
-              Image.asset("assets/icons/Admin.png",scale: 4,),
+              Image.asset(
+                "assets/icons/KOING Logo_GRD.png",
+                width: 70,
+              ),
+              Image.asset(
+                "assets/icons/Admin.png",
+                scale: 4,
+              ),
             ],
           ),
-SizedBox(height: 50,),
-          Column(children: [
-            Container(
-              height: 30,
-              // color: Colors.red,
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                children: const [
-                  Icon(
-                    Icons.home,
-                    color: Colors.black,
-                    size: 28,
+          const SizedBox(
+            height: 50,
+          ),
+          Column(
+            children: [
+              InkWell(
+                onTap: (){
+                  _selectedIndex=0;
+                  setState(() {
+
+                  });
+                },
+                child: Container(
+                  width: 210,
+                  height: 54,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: _selectedIndex==0? const Color(0xfffff5f8):Colors.white,
                   ),
-                  SizedBox(
-                    width: 20,
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Row(
+                    children:  [
+                      const SizedBox(width: 5,),
+                      Image.asset('assets/icons/dash.png',scale: 4,color: _selectedIndex==0?const Color(0xfff63c6e):Colors.black,),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      Text(
+                        "대시보드",
+                        style: TextStyle(
+                          color: _selectedIndex==0?const Color(0xfff63c6e):Colors.black,
+                          fontSize: 18,
+                          fontFamily: "Pretendard",
+                          fontWeight: FontWeight.w600,
+                        ),
+                      )
+                    ],
                   ),
-                  Text(
-                    "대시보드",
-                    style: TextStyle(
-                      color: Color(0xfff63c6e),
-                      fontSize: 18,
-                      fontFamily: "Pretendard",
-                      fontWeight: FontWeight.w600,
+                ),
+              ),
+              InkWell(
+                onTap: (){
+                  _selectedIndex=1;
+                  setState(() {
+
+                  });
+                },
+                child: Container(
+                  width: 210,
+                  height: 54,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: _selectedIndex==1?const Color(0xfffff5f8):Colors.white,
+                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Row(
+                    children:  [
+                      Image.asset('assets/icons/user.png',scale: 4,color:  _selectedIndex==1?const Color(0xfff63c6e):Colors.black,),
+                      const SizedBox(
+                        width: 15,
+                      ),
+                      Text(
+                        "유저 관리",
+                        style: TextStyle(
+                          color: _selectedIndex==1?const Color(0xfff63c6e):Colors.black,
+                          fontSize: 18,
+                          fontFamily: "Pretendard",
+                          fontWeight: FontWeight.w600,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+
+              InkWell(
+                onTap: (){
+                  _selectedIndex=2;
+                  setState(() {
+
+                  });
+                },
+                child: Container(
+                  width: 210,
+                  height: 54,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: _selectedIndex==2?const Color(0xfffff5f8):Colors.white,
+                  ),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                  ),
+                  child: Row(
+                    children:  [
+                      Image.asset('assets/icons/explore.png',scale: 4,color: _selectedIndex==2?const Color(0xfff63c6e):Colors.black,),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      Text(
+                        "탐험 관리",
+                        style: TextStyle(
+                          color: _selectedIndex==2?const Color(0xfff63c6e):Colors.black,
+                          fontSize: 18,
+                          fontFamily: "Pretendard",
+                          fontWeight: FontWeight.w600,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+
+              InkWell(
+                onTap: (){
+                  _selectedIndex=3;
+                  setState(() {
+
+                  });
+                },
+                child: Container(
+                  width: 210,
+                  height: 54,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color:_selectedIndex==3?const Color(0xfffff5f8):Colors.white,
+                  ),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                  ),
+                  child: Row(
+                    children:  [
+                      Image.asset('assets/icons/chatting.png',scale: 4,color:  _selectedIndex==3?const Color(0xfff63c6e):Colors.black,),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      Text(
+                        "채팅 관리",
+                        style: TextStyle(
+                          color: _selectedIndex==3?const Color(0xfff63c6e):Colors.black,
+                          fontSize: 18,
+                          fontFamily: "Pretendard",
+                          fontWeight: FontWeight.w600,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 500),
+              InkWell(
+                onTap: (){
+                  _selectedIndex=4;
+                  setState(() {
+
+                  });
+                },
+                child: Container(
+                  width: 225,
+                  height: 54,
+                  decoration: const BoxDecoration(
+                    border:  Border(
+
+                      top:  BorderSide( // POINT
+                        color:Color(0xfffff5f8),
+                        width: 2.0,
+                      ),
                     ),
-                  )
-                ],
-              ),
-            ),
-            const SizedBox(height: 20),
-            Container(
-              height: 30,
-              // color: Colors.red,
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                children: const [
-                  Icon(
-                    Icons.search_outlined,
-                    color: Colors.black54,
-                    size: 28,
                   ),
-                  SizedBox(
-                    width: 20,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
                   ),
-                  Text(
-                    "유저 관리", style: TextStyle(
-                      color: Color(0xfff63c6e),
-                fontSize: 18,
-                fontFamily: "Pretendard",
-                fontWeight: FontWeight.w600,
-              ),
-                  )
-                ],
-              ),
-            ),
-            const SizedBox(height: 20),
-            Container(
-              height: 30,
-              // color: Colors.red,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
-              ),
-              child: Row(
-                children: const [
-                  Icon(
-                    Icons.video_library_outlined,
-                    color: Colors.black54,
-                    size: 28,
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Text(
-                    "탐험 관리",
-                    style: TextStyle(
-                      color: Color(0xfff63c6e),
-                      fontSize: 18,
-                      fontFamily: "Pretendard",
-                      fontWeight: FontWeight.w600,
-                    ),
-                  )
-                ],
-              ),
-            ),
-            const SizedBox(height: 20),
-            Container(
-              height: 30,
-              // color: Colors.red,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
-              ),
-              child: Row(
-                children: const [
-                  Icon(
-                    Icons.settings_outlined,
-                    color: Colors.black54,
-                    size: 28,
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Text(
-                    "채팅 관리",
-                    style: TextStyle(
-                      color: Color(0xfff63c6e),
-                      fontSize: 18,
-                      fontFamily: "Pretendard",
-                      fontWeight: FontWeight.w600,
-                    ),
-                  )
-                ],
-              ),
-            ),
-            const SizedBox(height: 600),
-            Container(
-              height: 30,
-              // color: Colors.red,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
-              ),
-              child: Row(
-                children: const [
-                  Icon(
-                    Icons.logout_outlined,
-                    color: Colors.black54,
-                    size: 28,
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Text(
-                    "Logout",
-                    style: TextStyle(
-                      fontSize: 16,
-                    ),
-                  )
-                ],
-              ),
-            ),
-            const SizedBox(height: 20),
-          ],)
+                  child: Row(
+                    children:  [
+                      ClipOval(child: Image.asset('assets/icons/KOING Logo_GRD BG.png',width: 30,),),
+                      SizedBox(
+                        width: 14,
+                      ),
+                      Text(
+                        "관리자 01",
+                        style: TextStyle(
+                          color: Color(0xff1f1f1f),
+                          fontSize: 16,
+                          fontFamily: "Pretendard",
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 50,
+                      ),
+                     const Icon(
+                        Icons.logout_outlined,
+                        color: Colors.black,
+                        size: 25,
+                      ),
 
 
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+            ],
+          ),
         ],
       ),
     );
