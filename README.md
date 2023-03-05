@@ -1,6 +1,7 @@
 # koing_web_ver
 
 A new Flutter project.
+This is Admin Web ver.
 
 ## Getting Started
 
