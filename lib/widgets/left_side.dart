@@ -35,7 +35,7 @@ class _LeftSideState extends State<LeftSide> {
             ],
           ),
           const SizedBox(
-            height: 50,
+            height: 100,
           ),
           Column(
             children: [
@@ -81,31 +81,95 @@ class _LeftSideState extends State<LeftSide> {
 
                   });
                 },
-                child: Container(
-                  width: 210,
-                  height: 54,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: _selectedIndex==1?const Color(0xfffff5f8):Colors.white,
-                  ),
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                    children:  [
-                      Image.asset('assets/icons/user.png',scale: 4,color:  _selectedIndex==1?const Color(0xfff63c6e):Colors.black,),
-                      const SizedBox(
-                        width: 15,
+                child: Column(
+                  children: [
+                    Container(
+                      width: 210,
+                      height: 54,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: _selectedIndex==1?const Color(0xfffff5f8):Colors.white,
                       ),
-                      Text(
-                        "유저 관리",
-                        style: TextStyle(
-                          color: _selectedIndex==1?const Color(0xfff63c6e):Colors.black,
-                          fontSize: 18,
-                          fontFamily: "Pretendard",
-                          fontWeight: FontWeight.w600,
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Row(
+                        children:  [
+                          Image.asset('assets/icons/user.png',scale: 4,color:  _selectedIndex==1?const Color(0xfff63c6e):Colors.black,),
+                          const SizedBox(
+                            width: 15,
+                          ),
+                          Text(
+                            "유저 관리",
+                            style: TextStyle(
+                              color: _selectedIndex==1?const Color(0xfff63c6e):Colors.black,
+                              fontSize: 18,
+                              fontFamily: "Pretendard",
+                              fontWeight: FontWeight.w600,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                _selectedIndex==1?  Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 17,),
+                        InkWell(
+                          onTap: (){
+
+                          },
+                          child: const Opacity(
+                            opacity: 0.7,
+                            child: Text(
+                              "· 유저 대시보드",
+                              style: TextStyle(
+                                color: Color(0xff1f1f1f),
+                                fontSize: 15,
+                                fontFamily: "Pretendard",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
                         ),
-                      )
-                    ],
-                  ),
+                        const SizedBox(height: 15,),
+                        InkWell(
+                          onTap: (){
+
+                          },
+                          child: const Opacity(
+                            opacity: 0.7,
+                            child: Text(
+                              "· 전체 유저",
+                              style: TextStyle(
+                                color: Color(0xff1f1f1f),
+                                fontSize: 15,
+                                fontFamily: "Pretendard",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 15,),
+                        InkWell(
+                          onTap: (){
+
+                          },
+                          child: const Opacity(
+                            opacity: 0.7,
+                            child: Text(
+                              "· 신고 관리",
+                              style: TextStyle(
+                                color: Color(0xff1f1f1f),
+                                fontSize: 15,
+                                fontFamily: "Pretendard",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 17,),
+                      ],
+                    ):Container(),
+                  ],
                 ),
               ),
 
@@ -116,33 +180,97 @@ class _LeftSideState extends State<LeftSide> {
 
                   });
                 },
-                child: Container(
-                  width: 210,
-                  height: 54,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: _selectedIndex==2?const Color(0xfffff5f8):Colors.white,
-                  ),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                  ),
-                  child: Row(
-                    children:  [
-                      Image.asset('assets/icons/explore.png',scale: 4,color: _selectedIndex==2?const Color(0xfff63c6e):Colors.black,),
-                      const SizedBox(
-                        width: 20,
+                child: Column(
+                  children: [
+                    Container(
+                      width: 210,
+                      height: 54,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: _selectedIndex==2?const Color(0xfffff5f8):Colors.white,
                       ),
-                      Text(
-                        "탐험 관리",
-                        style: TextStyle(
-                          color: _selectedIndex==2?const Color(0xfff63c6e):Colors.black,
-                          fontSize: 18,
-                          fontFamily: "Pretendard",
-                          fontWeight: FontWeight.w600,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                      ),
+                      child: Row(
+                        children:  [
+                          Image.asset('assets/icons/explore.png',scale: 4,color: _selectedIndex==2?const Color(0xfff63c6e):Colors.black,),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Text(
+                            "탐험 관리",
+                            style: TextStyle(
+                              color: _selectedIndex==2?const Color(0xfff63c6e):Colors.black,
+                              fontSize: 18,
+                              fontFamily: "Pretendard",
+                              fontWeight: FontWeight.w600,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    _selectedIndex==2?  Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 17,),
+                        InkWell(
+                          onTap: (){
+
+                          },
+                          child: const Opacity(
+                            opacity: 0.7,
+                            child: Text(
+                              "· 탐험 대시보드",
+                              style: TextStyle(
+                                color: Color(0xff1f1f1f),
+                                fontSize: 15,
+                                fontFamily: "Pretendard",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
                         ),
-                      )
-                    ],
-                  ),
+                        const SizedBox(height: 15,),
+                        InkWell(
+                          onTap: (){
+
+                          },
+                          child: const Opacity(
+                            opacity: 0.7,
+                            child: Text(
+                              "· 전체 탐험",
+                              style: TextStyle(
+                                color: Color(0xff1f1f1f),
+                                fontSize: 15,
+                                fontFamily: "Pretendard",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 15,),
+                        InkWell(
+                          onTap: (){
+
+                          },
+                          child: const Opacity(
+                            opacity: 0.7,
+                            child: Text(
+                              "· 탐험 승인",
+                              style: TextStyle(
+                                color: Color(0xff1f1f1f),
+                                fontSize: 15,
+                                fontFamily: "Pretendard",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 17,),
+                      ],
+                    ):Container(),
+                  ],
                 ),
               ),
 

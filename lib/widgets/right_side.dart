@@ -16,37 +16,190 @@ class RightSideState extends State<RightSide> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      flex: 7,
-      child: Container(
+      //flex: 7,
+      child: Column(
+        children: [
+          appBar(),
+          Expanded(
+            child: ScrollConfiguration(
+              behavior:
+                  ScrollConfiguration.of(context).copyWith(dragDevices: {
+                PointerDeviceKind.mouse,
+                PointerDeviceKind.touch,
+              }, scrollbars: false),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  children: [
 
-        child: Column(
-          children: [
-            appBar(),
-            Expanded(
-              child: ScrollConfiguration(
-                behavior:
-                    ScrollConfiguration.of(context).copyWith(dragDevices: {
-                  PointerDeviceKind.mouse,
-                  PointerDeviceKind.touch,
-                }, scrollbars: false),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  physics: const BouncingScrollPhysics(),
-                  child: Column(
-                    children: [
-                      story(),
-                      feed(),
-                    ],
-                  ),
+                    //story(),
+                    container1(),
+                    SizedBox(height: 70,),
+                    container2(),
+                    //feed(),
+                  ],
                 ),
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }
+  SizedBox container1() {
+    return SizedBox(
+      height: 146,
 
+      child: ListView(scrollDirection:Axis.horizontal,children: [
+       const SizedBox(width: 80,),
+
+         Container(width: 1504,
+           height: 146,
+           decoration: BoxDecoration(
+             borderRadius: BorderRadius.circular(15),
+             color: Colors.white,
+           ),child: Row(children: [
+             const SizedBox(width: 80,),
+           Column(
+             crossAxisAlignment: CrossAxisAlignment.start,
+             mainAxisAlignment: MainAxisAlignment.center,
+             children: [
+               Opacity(
+                   opacity: 0.70,
+                   child: Text(
+                     "총 매출",
+                     style: TextStyle(
+                       color: Color(0xff1f1f1f),
+                       fontSize: 16,
+                       fontFamily: "Pretendard",
+                       fontWeight: FontWeight.w500,
+                     ),
+                   )),
+               Text(
+                 "1,128,000 원",
+                 style: TextStyle(
+                   color: Color(0xff1f1f1f),
+                   fontSize: 25,
+                   fontFamily: "Pretendard",
+                   fontWeight: FontWeight.w600,
+                 ),
+               )
+
+             ],
+           ),
+           Row(children:  [ SizedBox(width: 150,),Container(height:80,child: VerticalDivider(width: 1,)),SizedBox(width: 100,)],),
+           Column(
+             crossAxisAlignment: CrossAxisAlignment.start,
+             mainAxisAlignment: MainAxisAlignment.center,
+             children: [
+               Opacity(
+                   opacity: 0.70,
+                   child: Text(
+                     "앱 다운로드 수",
+                     style: TextStyle(
+                       color: Color(0xff1f1f1f),
+                       fontSize: 16,
+                       fontFamily: "Pretendard",
+                       fontWeight: FontWeight.w500,
+                     ),
+                   )),
+               Text(
+                 "183,203",
+                 style: TextStyle(
+                   color: Color(0xff1f1f1f),
+                   fontSize: 25,
+                   fontFamily: "Pretendard",
+                   fontWeight: FontWeight.w600,
+                 ),
+               )
+
+             ],
+           ),
+             Row(children:  [ SizedBox(width: 150,),Container(height:80,child: VerticalDivider(width: 1,)),SizedBox(width: 100,)],),
+
+             Column(
+             crossAxisAlignment: CrossAxisAlignment.start,
+               mainAxisAlignment: MainAxisAlignment.center,
+             children: [
+               Opacity(
+                   opacity: 0.70,
+                   child: Text(
+                     "유저 현황",
+                     style: TextStyle(
+                       color: Color(0xff1f1f1f),
+                       fontSize: 16,
+                       fontFamily: "Pretendard",
+                       fontWeight: FontWeight.w500,
+                     ),
+                   )),
+               Text(
+                 "95,784 명",
+                 style: TextStyle(
+                   color: Color(0xff1f1f1f),
+                   fontSize: 25,
+                   fontFamily: "Pretendard",
+                   fontWeight: FontWeight.w600,
+                 ),
+               )
+
+             ],
+           ),
+             Row(children:  [ SizedBox(width: 150,),Container(height:80,child: VerticalDivider(width: 1,)),SizedBox(width: 100,)],),
+
+             Column(
+             crossAxisAlignment: CrossAxisAlignment.start,
+               mainAxisAlignment: MainAxisAlignment.center,
+             children: [
+               Opacity(
+                   opacity: 0.70,
+                   child: Text(
+                     "누적 탐험 수",
+                     style: TextStyle(
+                       color: Color(0xff1f1f1f),
+                       fontSize: 16,
+                       fontFamily: "Pretendard",
+                       fontWeight: FontWeight.w500,
+                     ),
+                   )),
+               Text(
+                 "10,219 개",
+                 style: TextStyle(
+                   color: Color(0xff1f1f1f),
+                   fontSize: 25,
+                   fontFamily: "Pretendard",
+                   fontWeight: FontWeight.w600,
+                 ),
+
+               )
+             ],
+           ),
+             const SizedBox(width: 150,),
+         ],),)
+
+      ],),
+    );
+  }
+  SizedBox container2() {
+    return SizedBox(
+      height: 600,
+
+      child: ListView(scrollDirection:Axis.horizontal,children: [
+        const SizedBox(width: 80,),
+
+        Container( width: 1504,
+          height: 146,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            color: Colors.white,
+          ),child: Row(children: [
+            const SizedBox(width: 80,),
+
+          ],),)
+
+      ],),
+    );
+  }
   Container feed() {
     return Container(
       // color: Colors.green,
@@ -359,89 +512,19 @@ class RightSideState extends State<RightSide> {
     );
   }
 
-  Container appBar() {
-    return Container(
-      height: 50,
-      margin: const EdgeInsets.only(
-        top: 5,
-        left: 20,
-        right: 20,
-        bottom: 10,
-      ),
-      decoration: const BoxDecoration(
-          // color: Colors.red,
-          ),
+  Padding appBar() {
+    return  Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 80,vertical: 80),
       child: Row(
         children: [
-          Container(
-            width: 300,
-            height: 30,
-            padding: const EdgeInsets.only(top: 2, bottom: 2, left: 20),
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.all(Radius.circular(24)),
+          const Text(
+            "대시보드",
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 30,
+              fontFamily: "Pretendard",
+              fontWeight: FontWeight.w700,
             ),
-            child: Row(children: const [
-              Icon(
-                Icons.search_outlined,
-                color: Colors.grey,
-                size: 20,
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              Text(
-                "Search",
-                style: TextStyle(color: Colors.grey),
-              )
-            ]),
-          ),
-          const Spacer(),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.notifications_active_outlined),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.message_rounded),
-          ),
-          const SizedBox(
-            width: 5,
-          ),
-          Material(
-            elevation: 12,
-            borderRadius: const BorderRadius.all(Radius.circular(24)),
-            child: Container(
-                height: 30,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 5, horizontal: 25),
-                alignment: Alignment.center,
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(24)),
-                  gradient: LinearGradient(
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    stops: [
-                      0.1,
-                      0.4,
-                      0.6,
-                      0.9,
-                      0.9,
-                    ],
-                    colors: [
-                      Colors.orange,
-                      Color.fromARGB(255, 233, 111, 30),
-                      Color.fromARGB(255, 224, 67, 39),
-                      Colors.pink,
-                      Colors.pink,
-                    ],
-                  ),
-                ),
-                child: const Text(
-                  "+  Create a post",
-                  style: TextStyle(color: Colors.white),
-                )),
           ),
         ],
       ),

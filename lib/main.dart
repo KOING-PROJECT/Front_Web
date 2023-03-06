@@ -23,8 +23,9 @@ class MyApp extends StatelessWidget {
       ),
       home: LayoutBuilder(
         builder: (context, constraints) {
+          return const Home();
           if (constraints.maxWidth > 1000) {
-            return const Home();
+
           } else if (constraints.maxWidth <= 1000 &&
               constraints.maxWidth >= 600) {
             return const Scaffold(
