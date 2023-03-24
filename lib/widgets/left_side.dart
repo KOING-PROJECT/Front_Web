@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:koing_web_ver/notifier.dart';
+import 'package:provider/provider.dart';
 class LeftSide extends StatefulWidget {
   const LeftSide({super.key});
 
@@ -115,6 +116,11 @@ class _LeftSideState extends State<LeftSide> {
                         const SizedBox(height: 17,),
                         InkWell(
                           onTap: (){
+                            context.read<IndexNotifier>().updateIndex(1);
+                            print('hell');
+                            setState(() {
+
+                            });
 
                           },
                           child: const Opacity(

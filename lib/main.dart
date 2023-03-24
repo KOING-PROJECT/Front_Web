@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:koing_web_ver/notifier.dart';
+import 'package:provider/provider.dart';
 import 'pages/home.dart';
 
 /*
@@ -21,22 +23,25 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.purple,
       ),
-      home: LayoutBuilder(
-        builder: (context, constraints) {
-          return const Home();
-          if (constraints.maxWidth > 1000) {
+      home: MultiProvider(
+        providers: [ChangeNotifierProvider.value(value: indexNotifier)],
+          child:LayoutBuilder(
+            builder: (context, constraints) {
+              return const Home();
+             /* if (constraints.maxWidth > 1000) {
 
-          } else if (constraints.maxWidth <= 1000 &&
-              constraints.maxWidth >= 600) {
-            return const Scaffold(
-              body: Center(child: Text("THIS IS TABLET WIDGET")),
-            );
-          } else {
-            return const Scaffold(
-              body: Center(child: Text("THIS IS MOBILE WIDGET")),
-            );
-          }
-        },
+              } else if (constraints.maxWidth <= 1000 &&
+                  constraints.maxWidth >= 600) {
+                return const Scaffold(
+                  body: Center(child: Text("THIS IS TABLET WIDGET")),
+                );
+              } else {
+                return const Scaffold(
+                  body: Center(child: Text("THIS IS MOBILE WIDGET")),
+                );
+              }*/
+            },
+          ),
       ),
     );
   }

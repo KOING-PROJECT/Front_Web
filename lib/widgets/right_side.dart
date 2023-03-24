@@ -2,8 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-
-import '../global.dart';
+import 'package:provider/provider.dart';
+import '../notifier.dart';
 
 class RightSide extends StatefulWidget {
   const RightSide({super.key});
@@ -200,7 +200,7 @@ class RightSideState extends State<RightSide> {
       ],),
     );
   }
-  Container feed() {
+  /*Container feed() {
     return Container(
       // color: Colors.green,
       // height: 400,
@@ -510,7 +510,7 @@ class RightSideState extends State<RightSide> {
         ],
       ),
     );
-  }
+  }*/
 
   Padding appBar() {
     return  Padding(
