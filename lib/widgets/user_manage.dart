@@ -269,7 +269,7 @@ class UserManagementState extends State<UserManagement> {
                         children: [
                           Icon(Icons.check_box_outline_blank_rounded,size: 18,),
                           Container(width: 230,child: Text(
-                            "강지수",
+                            "섭섭🥹",
                             style: TextStyle(
                               color: Color(0xff1f1f1f),
                               fontSize: 17,
