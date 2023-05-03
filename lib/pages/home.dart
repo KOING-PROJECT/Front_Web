@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:koing_web_ver/widgets/user_manage.dart';
+import 'package:koing_web_ver/widgets/tour_access.dart';
 
 import '../notifier.dart';
 import '../widgets/left_side.dart';
@@ -22,7 +23,7 @@ class _HomeState extends State<Home> {
       body: Row(
         children:  [
           LeftSide(),
-          context.watch<IndexNotifier>().selectedIndex==1?UserManagement(): RightSide(),
+          context.watch<IndexNotifier>().selectedIndex==1?UserManagement() :context.watch<IndexNotifier>().selectedIndex==7?TourAccess(): RightSide(),
         ],
       ),
     );

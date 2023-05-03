@@ -258,6 +258,7 @@ class _LeftSideState extends State<LeftSide> {
                         const SizedBox(height: 15,),
                         InkWell(
                           onTap: (){
+                            context.read<IndexNotifier>().updateIndex(7);
 
                           },
                           child: const Opacity(

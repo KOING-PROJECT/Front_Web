@@ -3,17 +3,22 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
-class UserManagement extends StatefulWidget {
-  const UserManagement({super.key});
+class TourAccess extends StatefulWidget {
+  const TourAccess({super.key});
 
   @override
-  State<UserManagement> createState() => UserManagementState();
+  State<TourAccess> createState() => TourAccessState();
 }
 
-class UserManagementState extends State<UserManagement> {
+class TourAccessState extends State<TourAccess> with TickerProviderStateMixin {
   final TextEditingController _nameSearchController = TextEditingController();
+  late TabController _selectTabController;
 
-
+  @override
+  void initState() {
+    _selectTabController = TabController(length: 2, vsync: this);
+    super.initState();
+  }
   @override
   void dispose() {
     _nameSearchController.dispose();
@@ -36,13 +41,40 @@ class UserManagementState extends State<UserManagement> {
               child: SingleChildScrollView(
                 scrollDirection: Axis.vertical,
                 physics: const BouncingScrollPhysics(),
-                child: Column(
-                  children: [
-                    //story(),
-                    container2(),
-                    //feed(),
-                  ],
-                ),
+                child: Container(
+                  height: 700,
+                  width: 500,
+                  child: Column(
+                    children: [
+                      TabBar(
+                        controller: _selectTabController,
+                        indicatorColor: Color(0xfff63c6e),
+                        labelColor: Colors.pink,
+                        unselectedLabelColor: Colors.black54,
+                        // indicatorSize: TabBarIndicatorSize.label,
+                        // isScrollable: true,
+                        tabs: [
+                          Tab(
+                            text: "승인 대기", // 탐험 문의
+                          ),
+                          Tab(
+                            text: "반려", // 확정된 탐험
+                          ),
+                        ],
+                      ),
+                      Container(
+                        color: Colors.white,
+                        child: TabBarView(
+                          controller: _selectTabController,
+                          children: [
+                            Container(color: Colors.red,),
+                            Container(color: Colors.green,),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                )
               ),
             ),
           )
@@ -369,7 +401,7 @@ class UserManagementState extends State<UserManagement> {
       child: Row(
         children: [
           const Text(
-            "전체 유저",
+            "탐험 승인",
             style: TextStyle(
               color: Colors.black,
               fontSize: 30,
@@ -381,7 +413,7 @@ class UserManagementState extends State<UserManagement> {
             width: 30,
           ),
           const Text(
-            "가입 유저",
+            "승인 완료되지 않은 탐험이 35건 있습니다.",
             style: TextStyle(
               color: Color(0xfff63c6e),
               fontSize: 20,
@@ -389,38 +421,6 @@ class UserManagementState extends State<UserManagement> {
               fontWeight: FontWeight.w600,
             ),
           ),
-          SizedBox(
-            width: 30,
-          ),
-          const Text(
-            "탈퇴 유저",
-            style: TextStyle(
-              color: Color(0xfff63c6e),
-              fontSize: 20,
-              fontFamily: "Pretendard",
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          SizedBox(width: 100),
-          Container(
-            width: 476,
-            height: 58,
-            child: TextFormField(
-                controller: _nameSearchController,
-                decoration: InputDecoration(
-                  hintText: '유저 이름을 검색하세요',
-                  filled: true,
-                  fillColor: const Color(0xfff1eeef),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(60),
-                      borderSide:
-                          BorderSide(color: const Color(0xfff1eeef), width: 1)),
-                  focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(60),
-                      borderSide:
-                          BorderSide(color: const Color(0xfff1eeef), width: 1)),
-                )),
-          )
         ],
       ),
     );
