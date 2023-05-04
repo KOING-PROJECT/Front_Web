@@ -518,7 +518,7 @@ class TourAccessState extends State<TourAccess> with TickerProviderStateMixin {
 
   Padding appBar() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 80),
+      padding: const EdgeInsets.only(top: 80, bottom:30,left: 80),
       child: Row(
         children: [
           const Text(
