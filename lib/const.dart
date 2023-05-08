@@ -1,0 +1,10 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+String? vWorldKey=dotenv.env['vWorldKey'];
+String? nationFlagKey=dotenv.env['nationFlagKey'];
+String? iamPortKey=dotenv.env['iamPortKey'];
+String? SwaggerUrl=dotenv.env['SwaggerUrl'];
+String? SendBird=dotenv.env['SendBird'];
+String? SendBird_Manager=dotenv.env['SendBirdManager'];
+String? googleMapApiKey= dotenv.env['googleMapApiKey'];
+String? hengAnBuKORapikey = dotenv.env['hengAnBuKORapikey'];
+String? hengAnBuENGapikey = dotenv.env['hengAnBuENGapikey'];

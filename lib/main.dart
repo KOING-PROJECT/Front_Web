@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:koing_web_ver/notifier.dart';
+import 'package:koing_web_ver/pages/login.dart';
 import 'package:provider/provider.dart';
-import 'pages/home.dart';
 
 /*
 CODE BY Hmida71 Github
 Site Web https://hmida71.netlify.app
 For any service text me on instagram : hmida_._071 -- https://www.instagram.com/hmida_._071
 */
-void main() {
+void main() async{
+  await dotenv.load(fileName: 'assets/.env');
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -27,7 +30,7 @@ class MyApp extends StatelessWidget {
         providers: [ChangeNotifierProvider.value(value: indexNotifier)],
           child:LayoutBuilder(
             builder: (context, constraints) {
-              return const Home();
+              return const Login();
              /* if (constraints.maxWidth > 1000) {
 
               } else if (constraints.maxWidth <= 1000 &&
