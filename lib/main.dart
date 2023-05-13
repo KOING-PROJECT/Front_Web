@@ -26,12 +26,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.purple,
       ),
-      home: MultiProvider(
-        providers: [ChangeNotifierProvider.value(value: indexNotifier)],
-          child:LayoutBuilder(
-            builder: (context, constraints) {
-              return const Login();
-             /* if (constraints.maxWidth > 1000) {
+      home: LayoutBuilder(
+        builder: (context, constraints) {
+          return const Login();
+          /* if (constraints.maxWidth > 1000) {
 
               } else if (constraints.maxWidth <= 1000 &&
                   constraints.maxWidth >= 600) {
@@ -43,9 +41,8 @@ class MyApp extends StatelessWidget {
                   body: Center(child: Text("THIS IS MOBILE WIDGET")),
                 );
               }*/
-            },
-          ),
-      ),
+        },
+      )
     );
   }
 }

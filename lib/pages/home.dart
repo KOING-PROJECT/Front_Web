@@ -18,14 +18,19 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xfffff5f8),
+    return MultiProvider(providers: [ChangeNotifierProvider.value(value: indexNotifier)],
+      child: LayoutBuilder(
+        builder:(context, constraints) {
+          return Scaffold(
+          backgroundColor: Color(0xfffff5f8),
       body: Row(
-        children:  [
-          LeftSide(),
-          context.watch<IndexNotifier>().selectedIndex==1?UserManagement() :context.watch<IndexNotifier>().selectedIndex==7?TourAccess(): RightSide(),
-        ],
+      children:  [
+      LeftSide(),
+      context.watch<IndexNotifier>().selectedIndex==1?UserManagement() :context.watch<IndexNotifier>().selectedIndex==7?TourAccess(): RightSide(),
+      ],
       ),
-    );
+      );
+        },
+      ));
   }
 }

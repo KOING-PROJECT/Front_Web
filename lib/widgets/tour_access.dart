@@ -2,6 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import '../back_end/backend_model.dart';
+import '../back_end/secure_storage.dart';
+import 'package:koing_web_ver/back_end/tour_access_service.dart';
 
 class TourAccess extends StatefulWidget {
   const TourAccess({super.key});
@@ -15,10 +18,21 @@ class TourAccessState extends State<TourAccess> with TickerProviderStateMixin {
   late TabController _selectTabController;
   int clicked = 0;
 
+  List<dynamic>? travelList;
   @override
   void initState() {
+    _asyncMethod();
     _selectTabController = TabController(length: 2, vsync: this);
     super.initState();
+  }
+  void _asyncMethod() async{
+    dynamic userToken =
+        await SecureStorage().readSecureData('userAccessToken');
+  BackendModel travelListModel = await TourAccessService().getTourList(userToken, ['7']);
+  travelList=travelListModel.data['tours'];
+   setState(() {
+
+   });
   }
 
   @override
@@ -46,7 +60,7 @@ class TourAccessState extends State<TourAccess> with TickerProviderStateMixin {
                 isScrollable: true,
                 labelStyle: TextStyle(
                   color: Color(0xfff63c6e),
-                  fontSize: 22,
+                  fontSize: 16,
                   fontFamily: "Pretendard",
                   fontWeight: FontWeight.w600,
                 ),
@@ -68,7 +82,7 @@ class TourAccessState extends State<TourAccess> with TickerProviderStateMixin {
               Expanded(child: Container())
             ],
           ),
-          Expanded(
+          travelList==null?Expanded(child: Container()):Expanded(
             child: ScrollConfiguration(
               behavior: ScrollConfiguration.of(context).copyWith(dragDevices: {
                 PointerDeviceKind.mouse,
@@ -162,12 +176,12 @@ class TourAccessState extends State<TourAccess> with TickerProviderStateMixin {
                       padding: EdgeInsets.symmetric(horizontal: 10),
                       physics: NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
-                      itemCount: 30,
+                      itemCount: travelList!.length,
                       //item 개수
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 4,
                         //1 개의 행에 보여줄 item 개수
-                        childAspectRatio: 361 / 322,
+                        childAspectRatio: 361 / 352,
                         //item 의 가로 1, 세로 2 의 비율
                         mainAxisSpacing: 60,
                         //수평 Padding
@@ -181,37 +195,80 @@ class TourAccessState extends State<TourAccess> with TickerProviderStateMixin {
                               setState(() {});
                             },
                             child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Stack(
                                   children: [
+
                                     Container(
-                                      width: 361,
+                                      width: 280,
                                       height: 190,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(15),
-                                        color: Colors.red,
+                                        image: DecorationImage(
+                                          // 탐험 사진
+                                            image: NetworkImage(
+                                                travelList![index]
+                                                [
+                                                'thumbnails'][0].replaceFirst('https', 'http')),
+                                            fit: BoxFit.cover),
                                       ),
                                     ),
+                                    Positioned(
+                                      bottom: 0,
+                                      child: Container(
+                                        width: 280,
+                                        height: 100,
+                                        decoration:
+                                        BoxDecoration(
+                                          borderRadius:
+                                          BorderRadius
+                                              .circular(15),
+                                          gradient: LinearGradient(
+                                              colors: [
+                                                Colors
+                                                    .transparent,
+                                                Colors.black54
+                                              ],
+                                              begin: Alignment
+                                                  .topCenter,
+                                              end: Alignment
+                                                  .bottomCenter),
+                                        ),
+                                      ),
+                                    ),
+                                  Positioned( bottom: 15,left:15,child:   Text(
+                                    travelList![index]['tourTitle'],
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontFamily: "Pretendard",
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),),
                                     IconButton(
                                         onPressed: () {},
                                         icon: Icon(Icons.check_circle_outline))
                                   ],
                                 ),
-                                Column(
+                                Padding(padding: EdgeInsets.only(left: 20),child:  Column(
                                   mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
+                                    SizedBox(height: 12,),
                                     Text(
-                                      "Jinny",
+                                      travelList![index]['guideName'],
                                       style: TextStyle(
                                         color: Color(0xff1f1f1f),
-                                        fontSize: 20,
+                                        fontSize: 16,
                                         fontFamily: "Pretendard",
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
-                                    SizedBox(height: 10),
+                                    SizedBox(height: 8),
                                     Row(
                                       mainAxisSize: MainAxisSize.min,
                                       mainAxisAlignment:
@@ -220,10 +277,10 @@ class TourAccessState extends State<TourAccess> with TickerProviderStateMixin {
                                       CrossAxisAlignment.center,
                                       children: [
                                         Text(
-                                          "Intermediate",
+                                          travelList![index]['guideGrade'],
                                           style: TextStyle(
                                             color: Color(0xff928e8f),
-                                            fontSize: 17,
+                                            fontSize: 12,
                                             fontFamily: "Pretendard",
                                             fontWeight: FontWeight.w500,
                                           ),
@@ -233,7 +290,7 @@ class TourAccessState extends State<TourAccess> with TickerProviderStateMixin {
                                           "누적 승인 12회",
                                           style: TextStyle(
                                             color: Color(0xff4c89ff),
-                                            fontSize: 17,
+                                            fontSize: 12,
                                             fontFamily: "Pretendard",
                                             fontWeight: FontWeight.w500,
                                           ),
@@ -241,7 +298,7 @@ class TourAccessState extends State<TourAccess> with TickerProviderStateMixin {
                                       ],
                                     ),
                                   ],
-                                )
+                                ),)
                               ],
                             ));
                       },
@@ -392,7 +449,7 @@ class TourAccessState extends State<TourAccess> with TickerProviderStateMixin {
                                 "탐험 상세 내역  (1) 탐험 정보",
                                 style: TextStyle(
                                   color: Color(0xff1f1f1f),
-                                  fontSize: 25,
+                                  fontSize: 18,
                                   fontFamily: "Pretendard",
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -430,12 +487,21 @@ class TourAccessState extends State<TourAccess> with TickerProviderStateMixin {
                                       });
                                 },
                                 child: Container(
-                                  width: 150,
-                                  height: 54,
+                                  width: 108,
+                                  height: 42,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
                                     color: Color(0xfff1eeef),
                                   ),
+                                  child: Center(child: Text(
+                                    "반려",
+                                    style: TextStyle(
+                                      color: Color(0xff1f1f1f),
+                                      fontSize: 16,
+                                      fontFamily: "Pretendard",
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),)
                                 ),
                               ),
 
@@ -472,12 +538,21 @@ class TourAccessState extends State<TourAccess> with TickerProviderStateMixin {
                                       });
                                 },
                                 child: Container(
-                                  width: 150,
-                                  height: 54,
+                                  width: 108,
+                                  height: 42,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
                                     color: Color(0xfff63c6e),
                                   ),
+                                   child: Center(child: Text(
+                                     "승인",
+                                     style: TextStyle(
+                                       color: Colors.white,
+                                       fontSize: 16,
+                                       fontFamily: "Pretendard",
+                                       fontWeight: FontWeight.w600,
+                                     ),
+                                   ),)
                                 ),
                               ),
 
@@ -518,7 +593,7 @@ class TourAccessState extends State<TourAccess> with TickerProviderStateMixin {
 
   Padding appBar() {
     return Padding(
-      padding: const EdgeInsets.only(top: 80, bottom:30,left: 80),
+      padding: const EdgeInsets.only(top: 80, bottom:30,left: 40),
       child: Row(
         children: [
           const Text(
@@ -537,7 +612,7 @@ class TourAccessState extends State<TourAccess> with TickerProviderStateMixin {
             "승인 완료되지 않은 탐험이 35건 있습니다.",
             style: TextStyle(
               color: Color(0xfff63c6e),
-              fontSize: 20,
+              fontSize: 18,
               fontFamily: "Pretendard",
               fontWeight: FontWeight.w600,
             ),
