@@ -14,6 +14,11 @@ class TourAccess extends StatefulWidget {
 }
 
 class TourAccessState extends State<TourAccess> with TickerProviderStateMixin {
+
+   List<bool> selected=[];
+
+
+
   final TextEditingController _nameSearchController = TextEditingController();
   late TabController _selectTabController;
   int clicked = 0;
@@ -24,12 +29,15 @@ class TourAccessState extends State<TourAccess> with TickerProviderStateMixin {
     _asyncMethod();
     _selectTabController = TabController(length: 2, vsync: this);
     super.initState();
+    for(int i=0;i<30;i++){
+      selected.add(false);
+    }
   }
   void _asyncMethod() async{
     dynamic userToken =
         await SecureStorage().readSecureData('userAccessToken');
-  BackendModel travelListModel = await TourAccessService().getTourList(userToken, ['7']);
-  travelList=travelListModel.data['tours'];
+  BackendModel travelListModel = await TourAccessService().getTourListService(userToken);
+  travelList=travelListModel.data['createdTours'];
    setState(() {
 
    });
@@ -250,7 +258,7 @@ class TourAccessState extends State<TourAccess> with TickerProviderStateMixin {
                                   ),),
                                     IconButton(
                                         onPressed: () {},
-                                        icon: Icon(Icons.check_circle_outline))
+                                        icon: Image.asset('assets/icons/uncheck.png',scale: 4,))
                                   ],
                                 ),
                                 Padding(padding: EdgeInsets.only(left: 20),child:  Column(
@@ -327,6 +335,7 @@ class TourAccessState extends State<TourAccess> with TickerProviderStateMixin {
                       ),
                       itemBuilder: (BuildContext context, int index) {
                         //item 의 반목문 항목 형성
+
                         return InkWell(
                             onTap: () {
                               clicked = 1;
@@ -344,9 +353,21 @@ class TourAccessState extends State<TourAccess> with TickerProviderStateMixin {
                                         color: Colors.red,
                                       ),
                                     ),
-                                    IconButton(
-                                        onPressed: () {},
-                                        icon: Icon(Icons.check_circle_outline))
+                                    Positioned(
+                                      left: 5,
+                                      top: 5,
+                                      child: Container(
+                                        height: 60,
+                                        width: 60,
+                                        child: IconButton(
+                                            onPressed: () {
+                                              setState(() {
+                                                selected[index]=!selected[index];
+                                              });
+                                            },
+                                            icon: selected[index]?Image.asset('assets/icons/check.png',):Image.asset('assets/icons/uncheck.png',)),
+                                      ),
+                                    )
                                   ],
                                 ),
                                 Column(

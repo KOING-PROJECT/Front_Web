@@ -1,13 +1,44 @@
 import 'package:dio/dio.dart';
-import 'package:koing_web_ver/back_end/secure_storage.dart';
+
 
 import '../const.dart';
 import 'backend_model.dart';
-import '../back_end/login_model.dart';
-import 'dart:convert';
-import 'package:intl/intl.dart';
+
 class TourAccessService{
-  Future<BackendModel> getTourList(
+  Future<BackendModel> getTourListService(
+      String jwtToken) async {
+    Dio dio = Dio();
+
+    final response = await dio.get("${SwaggerUrl}/admin/tour/created",
+        options: Options(
+          contentType: 'application/json;charset=UTF-8',
+          headers: {
+            'authorization': jwtToken,
+          },
+        ));
+    BackendModel tourListModel = BackendModel.fromJson(response.data);
+    print(response.data);
+
+    return tourListModel;
+  }
+
+  Future<BackendModel> getTourDetailService(
+  String jwtToken,int tourId) async {
+    Dio dio = Dio();
+
+    final response = await dio.get("${SwaggerUrl}/admin/tour/$tourId",
+        options: Options(
+          contentType: 'application/json;charset=UTF-8',
+          headers: {
+            'authorization': jwtToken,
+          },
+        ));
+    BackendModel detailModel = BackendModel.fromJson(response.data);
+    print(response.data);
+
+    return detailModel;
+  }
+  /*Future<BackendModel> getTourList(
       String jwtToken, List<String> categories) async {
     Dio dio = Dio();
 
@@ -23,5 +54,5 @@ class TourAccessService{
     print(response.data);
 
     return userInformationModel;
-  }
+  }*/
 }
