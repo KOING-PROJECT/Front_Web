@@ -38,6 +38,39 @@ class TourAccessService{
 
     return detailModel;
   }
+
+  Future<void> approvalService(String jwtToken,List<int> tourIds) async {
+    print(tourIds);
+    final formData = {'tourIds': tourIds};
+    Dio dio = Dio();
+    dio.options.contentType = 'application/json;charset=UTF-8';
+    final response = await dio.patch(
+      "${SwaggerUrl}/admin/tour/approval",
+      options: Options(
+        headers: {
+          'authorization': jwtToken,
+        },
+      ),
+      data: formData,
+    );
+    return;
+  }
+
+  Future<void> rejectionService(String jwtToken,List<int> tourIds) async {
+    final formData = {'tourIds': tourIds};
+    Dio dio = Dio();
+    final response = await dio.patch(
+      "${SwaggerUrl}/admin/tour/rejection",
+      options: Options(
+        contentType: 'application/json;charset=UTF-8',
+        headers: {
+          'authorization': jwtToken,
+        },
+      ),
+      data: formData,
+    );
+    return;
+  }
   /*Future<BackendModel> getTourList(
       String jwtToken, List<String> categories) async {
     Dio dio = Dio();
