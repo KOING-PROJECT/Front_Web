@@ -205,7 +205,8 @@ class TourAccessState extends State<TourAccess> with TickerProviderStateMixin {
                                   builder: (context2) {
                                     List<int> updateTourId=[];
                                     for(int i=0;i<tourIds.length;i++){
-                                     updateTourId.add(travelList![i]['tourId']);
+                                     updateTourId.add(travelList![tourIds[i]]['tourId']);
+                                     print(travelList![tourIds[i]]['tourId']);
                                     }
                                     return BackdropFilter(
                                       filter: ImageFilter.blur(
@@ -286,7 +287,7 @@ class TourAccessState extends State<TourAccess> with TickerProviderStateMixin {
                                                                     SizedBox(
                                                                       width: 690,
                                                                       child: Text(
-                                                                        travelList![i]['tourTitle'],
+                                                                        travelList![tourIds[i]]['tourTitle'],
                                                                         style: TextStyle(
                                                                           color: Color(0xff1f1f1f),
                                                                           fontSize: 18,
@@ -301,7 +302,7 @@ class TourAccessState extends State<TourAccess> with TickerProviderStateMixin {
                                                                       crossAxisAlignment: CrossAxisAlignment.center,
                                                                       children:[
                                                                         Text(
-                                                                          travelList![i]['guideName'],
+                                                                          travelList![tourIds[i]]['guideName'],
                                                                           style: TextStyle(
                                                                             color: Color(0xff1f1f1f),
                                                                             fontSize: 14,
@@ -311,7 +312,7 @@ class TourAccessState extends State<TourAccess> with TickerProviderStateMixin {
                                                                         ),
                                                                         const SizedBox(width: 15),
                                                                         Text(
-                                                                          travelList![i]['guideGrade'],
+                                                                          travelList![tourIds[i]]['guideGrade'],
                                                                           style: TextStyle(
                                                                             color: Color(0xff928e8f),
                                                                             fontSize: 14,
@@ -321,7 +322,7 @@ class TourAccessState extends State<TourAccess> with TickerProviderStateMixin {
                                                                         ),
                                                                        const SizedBox(width: 15),
                                                                         Text(
-                                                                          "누적 승인 ${travelList![i]['guideAccumulatedApprovalNumber']}회",
+                                                                          "누적 승인 ${travelList![tourIds[i]]['guideAccumulatedApprovalNumber']}회",
                                                                           style: TextStyle(
                                                                             color: Color(0xff4c89ff),
                                                                             fontSize: 14,

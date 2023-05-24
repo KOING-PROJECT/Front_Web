@@ -140,8 +140,7 @@ class _LoginState extends State<Login> {
                   const   SizedBox(height: 50,),
                     InkWell(
                       onTap: ()async{
-                        BackendModel signInRequestModel =
-                        await LoginService().isSigning(_idController.text, _passwordController.text);
+                        BackendModel signInRequestModel = await LoginService().isSigning(_idController.text, _passwordController.text);
                         setState(() {
                           _signSuccess = signInRequestModel.message!;
                         });

@@ -6,8 +6,9 @@ import 'backend_model.dart';
 import '../back_end/login_model.dart';
 import 'dart:convert';
 import 'package:intl/intl.dart';
+import 'package:http/http.dart' as http;
 class LoginService{
-  Future<BackendModel> isSigning(String email, String password) async {
+  /*Future<BackendModel> isSigning(String email, String password) async {
     final formData = {'email': email, 'password': password};
     Dio dio = Dio();
     dio.options.contentType = 'application/json;charset=UTF-8';
@@ -18,6 +19,21 @@ class LoginService{
 
     BackendModel signInRequestModel = BackendModel.fromJson(response.data);
     print(response.data);
+
+    return signInRequestModel;
+  }*/
+
+  Future<BackendModel> isSigning(String email, String password) async {
+    final formData = {'email': email, 'password': password};
+   final headers = {'Content-Type':'application/json;charset=UTF-8'};
+    Dio dio = Dio();
+    dio.options.contentType = 'application/json;charset=UTF-8';
+    var url=Uri.parse('http://3.34.182.215:8080/sign/sign-in');
+   var body= jsonEncode(formData);
+    final response = await http.post(url,headers:headers,body: body);
+
+    BackendModel signInRequestModel = BackendModel.fromJson(jsonDecode(response.body));
+    print(response.body);
 
     return signInRequestModel;
   }

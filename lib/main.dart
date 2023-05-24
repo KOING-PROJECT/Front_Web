@@ -10,7 +10,7 @@ Site Web https://hmida71.netlify.app
 For any service text me on instagram : hmida_._071 -- https://www.instagram.com/hmida_._071
 */
 void main() async{
-  await dotenv.load(fileName: 'assets/.env');
+  await dotenv.load(fileName: 'assets/dotenv');
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
