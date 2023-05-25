@@ -1492,7 +1492,7 @@ class TourAccessState extends State<TourAccess> with TickerProviderStateMixin {
                                                                               child: Container(
                                                                                 padding: EdgeInsets.all(40),
                                                                                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.white),
-                                                                                child: Column(
+                                                                                child: temp.length==0?Container():Column(
                                                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                                                   children: [
                                                                                     Text(
