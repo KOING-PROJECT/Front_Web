@@ -28,7 +28,7 @@ class LoginService{
    final headers = {'Content-Type':'application/json;charset=UTF-8'};
     Dio dio = Dio();
     dio.options.contentType = 'application/json;charset=UTF-8';
-    var url=Uri.parse('//3.34.182.215:8080/sign/sign-in');
+    var url=Uri.parse('${SwaggerUrl}/sign/sign-in');
    var body= jsonEncode(formData);
     final response = await http.post(url,headers:headers,body: body);
 
